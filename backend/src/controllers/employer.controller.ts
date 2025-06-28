@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import { Request, Response } from "express";
 import EmployerProfile from "../models/employer.model";
 
 export const createEmployerProfile = async (req: Request, res: Response) => {

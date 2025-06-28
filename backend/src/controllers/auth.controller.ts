@@ -1,19 +1,8 @@
 import { Request, Response } from "express";
-import Auth from "../models/auth.model";
+import Auth, { IUser } from "../models/auth.model";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/generateToken";
-import { Document } from "mongoose";
 
-interface UserDocument extends Document {
-  _id: string;
-  name: string;
-  email: string;
-  password: string;
-  role: string;
-  picture?: string;
-  googleId?: string;
-  isGoogleUser: boolean;
-}
 
 export const registerUser = async (req: Request, res: Response) => {
   try {
@@ -48,9 +37,9 @@ export const registerUser = async (req: Request, res: Response) => {
       email,
       password: hashedPassword,
       role,
-    })) as UserDocument;
+    })) as IUser;
 
-    const token = generateToken(user._id.toString());
+    const token = generateToken(String(user._id));
 
     // Set token in cookie
     res.cookie("token", token, {
@@ -87,7 +76,7 @@ export const loginUser = async (req: Request, res: Response) => {
         .json({ success: false, message: "All fields are required" });
     }
 
-    const existingUser = (await Auth.findOne({ email })) as UserDocument;
+    const existingUser = (await Auth.findOne({ email })) as IUser;
 
     if (!existingUser) {
       return res
@@ -106,7 +95,7 @@ export const loginUser = async (req: Request, res: Response) => {
         });
     }
 
-    const isMatch = await bcrypt.compare(password, existingUser.password);
+    const isMatch = await bcrypt.compare(password, String(existingUser.password));
 
     if (!isMatch) {
       return res
@@ -114,7 +103,7 @@ export const loginUser = async (req: Request, res: Response) => {
         .json({ success: false, message: "Invalid credentials" });
     }
 
-    const token = generateToken(existingUser._id.toString());
+    const token = generateToken(String(existingUser._id));
 
     // Set token in cookie
     res.cookie("token", token, {
@@ -159,8 +148,8 @@ export const logoutUser = async (req: Request, res: Response) => {
 export const googleAuthCallback = async (req: Request, res: Response) => {
   try {
     // req.user is set by passport
-    const user = req.user as UserDocument;
-    const token = generateToken(user._id.toString());
+    const user = req.user as IUser;
+    const token = generateToken(String(user._id));
 
     // Set token in cookie
     res.cookie("token", token, {
@@ -202,7 +191,7 @@ export const googleAuthCallback = async (req: Request, res: Response) => {
 export const fetchMe = async (req: Request, res: Response) => {
   try {
     // Get user from request (set by auth middleware)
-    const user = req.user as UserDocument;
+    const user = req.user as IUser;
 
     if (!user) {
       return res.status(401).json({
@@ -231,7 +220,7 @@ export const fetchMe = async (req: Request, res: Response) => {
 export const updateUserRole = async (req: Request, res: Response) => {
   try {
     const { role } = req.body;
-    const user = req.user as UserDocument;
+    const user = req.user as IUser;
 
     if (!user) {
       return res.status(401).json({
@@ -240,7 +229,8 @@ export const updateUserRole = async (req: Request, res: Response) => {
       });
     }
 
-    if (!role || !["user", "employer"].includes(role)) {
+    const validRoles: string[] = ["user", "employer"];
+    if (!role || !validRoles.includes(role)) {
       return res.status(400).json({
         success: false,
         message: 'Invalid role. Must be either "user" or "employer"',

@@ -1,4 +1,4 @@
-import express from 'express'
+import { Router } from 'express'
 import { protectEmployer, protect } from '../middleware/protectedRoute'
 import { 
   createJob, 
@@ -9,7 +9,7 @@ import {
   deleteJob 
 } from '../controllers/job.controller'
 
-const router = express.Router()
+const router = Router()
 
 // Public routes (anyone can view jobs)
 router.get("/", getJobs);

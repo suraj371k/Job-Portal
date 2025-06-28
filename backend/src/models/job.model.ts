@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Types } from "mongoose";
+import mongoose, { Schema, Types, Document } from "mongoose";
 
 export type JobType = "full-time" | "part-time" | "contract" | "internship" | "freelance";
 

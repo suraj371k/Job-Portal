@@ -124,7 +124,7 @@ export const getAllApplicantsForEmployerJobs = async (req: Request, res: Respons
 
     // Find all jobs posted by this employer
     const jobs = await Job.find({ employer: employerProfile._id }).select("_id");
-    const jobIds = jobs.map(job => job._id);
+    const jobIds = jobs.map((job: any) => job._id);
 
     // Find all applications for these jobs
     const applications = await Application.find({ job: { $in: jobIds } })
@@ -150,7 +150,7 @@ export const updateApplicationStatus = async (req: Request, res: Response) => {
     const { status } = req.body;
 
     // Validate status
-    const validStatuses = [
+    const validStatuses: string[] = [
       "applied",
       "shortlisted",
       "interview",

@@ -5,8 +5,8 @@ export const authRateLimiter = rateLimit({
     max: 10, //limit each Ip to 10 requests per windowMs
     message: {
         success: false,
-        message: "To many request , please try again later"
+        message: "Too many requests, please try again later"
     },
     standardHeaders: true,
     legacyHeaders: true
-})
+});

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import process from 'process';
 import Auth from '../models/auth.model';
 import EmployerProfile from '../models/employer.model';
 
@@ -7,10 +8,13 @@ interface JwtPayload {
   id: string;
 }
 
-// Extend Request interface to include user
+// Extend Request interface to include user and cookies
 interface AuthenticatedRequest extends Request {
   user?: any;
   employerProfile?: any;
+  cookies: {
+    token?: string;
+  };
 }
 
 export const protect = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {

@@ -1,10 +1,10 @@
-import express from 'express';
+import { Router } from 'express';
 import passport from 'passport';
 import { loginUser, registerUser, logoutUser, googleAuthCallback, fetchMe, updateUserRole } from '../controllers/auth.controller';
 import { authRateLimiter } from '../middleware/rateLimiter';
 import { protect } from '../middleware/protectedRoute';
 
-const router = express.Router();
+const router = Router();
 
 // Existing routes
 router.post('/register', registerUser);

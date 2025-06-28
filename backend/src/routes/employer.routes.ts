@@ -1,4 +1,4 @@
-import express from "express";
+import { Router } from "express";
 import {
   createEmployerProfile,
   getEmployerProfile,
@@ -6,7 +6,8 @@ import {
 } from "../controllers/employer.controller";
 import { protect, protectEmployer } from "../middleware/protectedRoute";
 import { updateApplicationStatus } from "../controllers/application.controller";
-const router = express.Router();
+
+const router = Router();
 
 router.post("/profile", protect, createEmployerProfile);
 router.get("/profile", protectEmployer, getEmployerProfile);
