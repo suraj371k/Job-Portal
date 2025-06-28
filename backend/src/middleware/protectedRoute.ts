@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import process from 'process';
 import Auth from '../models/auth.model';
 import EmployerProfile from '../models/employer.model';
 

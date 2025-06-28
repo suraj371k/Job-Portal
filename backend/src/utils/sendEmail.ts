@@ -1,5 +1,4 @@
 import nodemailer from 'nodemailer'
-import process from 'process'
 
 interface EmailOptions {
     to: string;

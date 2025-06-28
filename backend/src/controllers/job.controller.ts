@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import process from "process";
 import Job from "../models/job.model";
 import EmployerProfile from "../models/employer.model";
 
