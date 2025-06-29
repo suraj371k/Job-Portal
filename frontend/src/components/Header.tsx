@@ -39,6 +39,7 @@ const Header = () => {
             src="/images/j_header1.avif"
             width={60}
             height={60}
+            priority
           />
           <p className="text-gray-600 text-sm md:text-base">
             2488+ candidates got their jobs from here
@@ -61,6 +62,7 @@ const Header = () => {
           width={500}
           height={800}
           className="w-full h-auto object-cover rounded-xl shadow-xl"
+          priority
         />
       </motion.div>
     </motion.header>

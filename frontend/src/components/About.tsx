@@ -3,7 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Users, Award, Globe, Heart, Target, Shield } from "lucide-react";
+import {  Heart, Target, Shield } from "lucide-react";
 
 const About = () => {
   const teamMembers = [
