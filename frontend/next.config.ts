@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/api/v1/:path*',
-        destination: 'http://localhost:4000/api/v1/:path*',
+        destination: 'https://job-portal-1-ynet.onrender.com/api/v1/:path*',
       },
     ];
   },
