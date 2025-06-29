@@ -5,7 +5,7 @@ import { Loader2, Building2, Calendar, CheckCircle, XCircle, Clock } from "lucid
 import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "next/navigation";
 
-export const Application = () => {
+const Application = () => {
   const { loading, error, getUserApplications, applications } = useApplicationStore();
 
   const { user } = useAuthStore()
