@@ -41,8 +41,8 @@ type EmployerProfileFormData = {
   };
   description: string;
 };
- 
-export function CreateEmployerProfileForm() {
+
+export default function CreateEmployerProfileForm() {
   const router = useRouter();
   const { user, hasHydrated } = useAuthStore();
   const { employerProfile, fetchEmployerProfile, createEmployerProfile, updateEmployerProfile, loading } = useEmployerProfileStore();
@@ -321,5 +321,3 @@ export function CreateEmployerProfileForm() {
     </div>
   );
 }
-
-export default CreateEmployerProfileForm;
