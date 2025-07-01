@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -27,9 +28,11 @@ const Header = () => {
         </p>
 
         <div className="mt-4">
+          <Link href="/user/job/get-job">
           <Button className="w-full sm:w-64 text-lg bg-[#2d6a4f] cursor-pointer h-[54px] hover:bg-[#2d6a4f]">
             Explore Jobs
           </Button>
+        </Link>
         </div>
 
         <div className="mt-6 flex items-center gap-4">
