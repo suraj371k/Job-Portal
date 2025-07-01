@@ -16,6 +16,7 @@ import jobRoutes from "./routes/job.routes";
 import applicationRoutes from "./routes/application.routes";
 
 const app = express();
+app.set('trust proxy', 1);
 const port = process.env.PORT || 4000;
 
 
