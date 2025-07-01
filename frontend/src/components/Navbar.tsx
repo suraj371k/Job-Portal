@@ -44,12 +44,12 @@ const Navbar = () => {
     );
   };
 
-  const router = useRouter()
+  const router = useRouter();
 
   const handleLogout = () => {
-    logout()
-    router.push('/login')
-  }
+    logout();
+    router.push("/login");
+  };
 
   const userNavItems = [
     { label: "Find Jobs", icon: Briefcase, href: "/user/job/get-job" },
@@ -191,12 +191,11 @@ const Navbar = () => {
             </Badge>
 
             {/* Profile Dropdown */}
-            <ProfileDropdown />
+            {user ? <ProfileDropdown /> : <Link href="/login"><Button>Login</Button></Link>}
           </div>
 
           {/* Mobile Menu */}
           <div className="flex md:hidden items-center space-x-2">
-
             {/* Mobile Menu Trigger */}
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>

@@ -7,7 +7,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      callbackURL: 'http://localhost:4000/api/v1/auth/google/callback',
+      callbackURL: 'https://job-portal-1-ynet.onrender.com/api/v1/auth/google/callback',
       scope: ['profile', 'email'],
     },
     async (accessToken: string, refreshToken: string, profile: any, done: any) => {
