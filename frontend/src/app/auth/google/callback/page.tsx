@@ -34,10 +34,10 @@ export default function GoogleCallback() {
           if (parsedUserData.isNewUser) {
             setIsNewUser(true);
           } else {
-            // Existing user, proceed to dashboard
+            // Existing user, proceed to home page
             setUser(parsedUserData);
             toast.success('Login successful!');
-            router.replace('/dashboard');
+            router.replace('/');
           }
         } else {
           toast.error('No user data received');
@@ -57,7 +57,7 @@ export default function GoogleCallback() {
     setUser(updatedUserData);
     setIsNewUser(false);
     toast.success('Login successful!');
-    router.replace('/dashboard');
+    router.replace('/');
   };
 
   // Show role selection for new users

@@ -5,8 +5,12 @@ import { FcGoogle } from "react-icons/fc";
 
 export function GoogleLoginButton() {
   const handleGoogleLogin = () => {
-    const callbackUrl = `${window.location.origin}/auth/google/callback`;
-    window.location.href = `/api/v1/auth/google?callbackUrl=${encodeURIComponent(callbackUrl)}`;
+    // For Google OAuth, we don't need to pass callbackUrl as a parameter
+    // The callback URL is configured in the backend passport strategy
+    const apiUrl = process.env.NODE_ENV === 'production' 
+      ? 'https://job-portal-1-ynet.onrender.com'
+      : 'http://localhost:4000';
+    window.location.href = `${apiUrl}/api/v1/auth/google`;
   };
 
   return (
